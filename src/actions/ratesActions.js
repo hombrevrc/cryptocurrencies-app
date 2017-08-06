@@ -5,7 +5,7 @@ export function fetchRates(){
 
     axios.get('https://poloniex.com/public?command=returnTicker')
       .then((response) => {
-        dispatch({type: 'FETCH_RATES_FULFILLED', payload: [{currency: 'BTC', exchangeRate: response.data.USDT_BTC.last, exchange: 'Poloniex'}, {currency: 'ETH', exchangeRate: response.data.USDT_ETH.last, exchange: 'Poloniex'}]});
+        dispatch({type: 'FETCH_RATES_FULFILLED', payload: [{currency: 'BTC', exchangeRate: Math.round(response.data.USDT_BTC.last), exchange: 'Poloniex'}, {currency: 'ETH', exchangeRate: Math.round(response.data.USDT_ETH.last), exchange: 'Poloniex'}]});
       })
       .catch((err) => {
         dispatch({type: 'FETCH_RATES_REJECTED', payload: err});
@@ -13,7 +13,7 @@ export function fetchRates(){
 
       axios.get('https://api.coinbase.com/v2/exchange-rates?currency=USD')
         .then((response) => {
-          dispatch({type: 'FETCH_RATES_FULFILLED', payload: [{currency: 'BTC', exchangeRate: (1 / response.data.data.rates.BTC), exchange: 'Coinbase'}, {currency: 'ETH', exchangeRate: (1 / response.data.data.rates.ETH), exchange: 'Coinbase'}]});
+          dispatch({type: 'FETCH_RATES_FULFILLED', payload: [{currency: 'BTC', exchangeRate: Math.round(1 / response.data.data.rates.BTC), exchange: 'Coinbase'}, {currency: 'ETH', exchangeRate: Math.round(1 / response.data.data.rates.ETH), exchange: 'Coinbase'}]});
         })
         .catch((err) => {
           dispatch({type: 'FETCH_RATES_REJECTED', payload: err});
