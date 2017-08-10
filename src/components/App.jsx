@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import RatesList from './RatesList.jsx';
+import RatesWidget from './RatesWidget.jsx';
 
 import { fetchRates } from '../actions/ratesActions';
 
@@ -16,7 +16,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <RatesList rates={this.props.rates} />
+        <RatesWidget rates={this.props.rates} />
       </div>
     )
   }
