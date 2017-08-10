@@ -14,9 +14,17 @@ class App extends React.Component {
     this.props.dispatch(fetchRates());
   }
   render(){
+    const ratesListGeneralStyle = {
+      fontFamily: 'Helvetica Neue, sans-serif',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }
     return (
-      <div>
-        <RatesWidget rates={this.props.rates} />
+      <div style={ratesListGeneralStyle}>
+        <h1>Cryptocurrencies exchange rates</h1>
+        <RatesWidget currency='BTC' currencyNameExtended='Bitcoin' rates={this.props.rates.rates.ratesBTC} />
+        <RatesWidget currency='ETH' currencyNameExtended='Ethereum' rates={this.props.rates.rates.ratesETH} />
       </div>
     )
   }
