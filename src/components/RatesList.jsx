@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Media from 'react-media';
+
 import Rate from './Rate.jsx';
 
 export default class RatesList extends React.Component {
@@ -39,12 +41,24 @@ export default class RatesList extends React.Component {
         <div style={ratesListGeneralStyle}>
           <h1>Cryptocurrencies exchange rates</h1>
           <div style={individualCurrencyDivStyle}>
-            <h2 style={{textAlign: 'center'}}>Bitcoin rates</h2>
+            <Media query={{minWidth: 980}}>
+              {matches => matches ? (
+                <h3 style={{textAlign: 'center'}}>Bitcoin rates</h3>
+              ) : (
+                <p style={{textAlign: 'center', fontSize: '1.6em'}}>Bitcoin rates</p>
+              )}
+            </Media>
             <img src={require('./Bitcoin_logo.svg')} alt='Bitcoin logo' style={logoStyle} />
             {ratesBTCNodes}
           </div>
           <div style={individualCurrencyDivStyle}>
-            <h2 style={{textAlign: 'center'}}>Ethereum rates</h2>
+            <Media query={{minWidth: 980}}>
+              {matches => matches ? (
+                <h3 style={{textAlign: 'center'}}>Ethereum rates</h3>
+              ) : (
+                <p style={{textAlign: 'center', fontSize: '1.6em'}}>Bitcoin rates</p>
+              )}
+            </Media>
             <img src={require('./Ethereum.png')} alt='Ethereum logo' style={logoStyle} />
             <a style={{display:'block', fontStyle:'italic', textDecoration:'none', color: 'inherit', fontSize:'0.8em', paddingBottom:'5px'}} href='https://ethereum.org/assets'>CC BY 3.0 Ethereum Foundation</a>
             {ratesETHNodes}
